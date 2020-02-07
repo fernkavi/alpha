@@ -10,6 +10,8 @@ class PingController extends Controller
 {
     //
     public function index(){
+
+    while(true){
         $findWordTTL="TTL expired in transit.";
         $findWordLoss="100% loss";
         $dataIPAcc=Device::with('node')->where('type','=','IP Access')->get();
@@ -24,10 +26,10 @@ class PingController extends Controller
             $chkTTL=strpos($out[2],$findWordTTL);
             $chkLoss=strpos($out[5],$findWordLoss);
             if($chkTTL!==FALSE || $chkLoss!==FALSE){
-                $statusIPAcc[$dataIPAcc[$i]['node']['abbrEN']]="DOWN";
+                $statusIPAcc[$dataIPAcc[$i]['id']]=["DOWN",$dataIPAcc[$i]['node']['abbrEN']];
             }
             else{
-                $statusIPAcc[$dataIPAcc[$i]['node']['abbrEN']]="UP";
+                $statusIPAcc[$dataIPAcc[$i]['id']]=["UP",$dataIPAcc[$i]['node']['abbrEN']];
             }
         }
 
@@ -36,10 +38,10 @@ class PingController extends Controller
             $chkTTL=strpos($out[2],$findWordTTL);
             $chkLoss=strpos($out[5],$findWordLoss);
             if($chkTTL!==FALSE || $chkLoss!==FALSE){
-                $statusRS232[$dataRS232[$i]['node']['abbrEN']]="DOWN";
+                $statusRS232[$dataRS232[$i]['id']]=["DOWN",$dataRS232[$i]['node']['abbrEN']];
             }
             else{
-                $statusRS232[$dataRS232[$i]['node']['abbrEN']]="UP";
+                $statusRS232[$dataRS232[$i]['id']]=["UP",$dataRS232[$i]['node']['abbrEN']];
             }
         }
 
@@ -48,10 +50,10 @@ class PingController extends Controller
             $chkTTL=strpos($out[2],$findWordTTL);
             $chkLoss=strpos($out[5],$findWordLoss);
             if($chkTTL!==FALSE || $chkLoss!==FALSE){
-                $statusVoIP[$dataVoIP[$i]['node']['abbrEN']]="DOWN";
+                $statusVoIP[$dataVoIP[$i]['id']]=["DOWN",$dataVoIP[$i]['node']['abbrEN']];
             }
             else{
-                $statusVoIP[$dataVoIP[$i]['node']['abbrEN']]="UP";
+                $statusVoIP[$dataVoIP[$i]['id']]=["UP",$dataVoIP[$i]['node']['abbrEN']];
             }
         }
 
@@ -60,10 +62,10 @@ class PingController extends Controller
             $chkTTL=strpos($out[2],$findWordTTL);
             $chkLoss=strpos($out[5],$findWordLoss);
             if($chkTTL!==FALSE || $chkLoss!==FALSE){
-                $statusVGForth[$dataVGForth[$i]['node']['abbrEN']]="DOWN";
+                $statusVGForth[$dataVGForth[$i]['id']]=["DOWN",$dataVGForth[$i]['node']['abbrEN']];
             }
             else{
-                $statusVGForth[$dataVGForth[$i]['node']['abbrEN']]="UP";
+                $statusVGForth[$dataVGForth[$i]['id']]=["UP",$dataVGForth[$i]['node']['abbrEN']];
             }
         }
 
@@ -72,10 +74,10 @@ class PingController extends Controller
             $chkTTL=strpos($out[2],$findWordTTL);
             $chkLoss=strpos($out[5],$findWordLoss);
             if($chkTTL!==FALSE || $chkLoss!==FALSE){
-                $statusSIP[$dataSIP[$i]['node']['abbrEN']]="DOWN";
+                $statusSIP[$dataSIP[$i]['id']]=["DOWN",$dataSIP[$i]['node']['abbrEN']];
             }
             else{
-                $statusSIP[$dataSIP[$i]['node']['abbrEN']]="UP";
+                $statusSIP[$dataSIP[$i]['id']]=["UP",$dataSIP[$i]['node']['abbrEN']];
             }
         }
 
@@ -84,13 +86,23 @@ class PingController extends Controller
             $chkTTL=strpos($out[2],$findWordTTL);
             $chkLoss=strpos($out[5],$findWordLoss);
             if($chkTTL!==FALSE || $chkLoss!==FALSE){
-                $statusRoIP[$dataRoIP[$i]['node']['abbrEN']]="DOWN";
+                $statusRoIP[$dataRoIP[$i]['id']]=["DOWN",$dataRoIP[$i]['node']['abbrEN']];
             }
             else{
-                $statusRoIP[$dataRoIP[$i]['node']['abbrEN']]="UP";
+                $statusRoIP[$dataRoIP[$i]['id']]=["UP",$dataRoIP[$i]['node']['abbrEN']];
             }
         }
 
+
+        // return view('ping',[
+        //     'statusIPAcc'=>$statusIPAcc,
+        //     'statusRS232'=>$statusRS232,
+        //     'statusVoIP'=>$statusVoIP,
+        //     'statusVGForth'=>$statusVGForth,
+        //     'statusSIP'=>$statusSIP,
+        //     'statusRoIP'=>$statusRoIP,
+        //     'dataRS232'=>$dataRS232
+        // ]);
 
         return view('dashboard',[
             'statusIPAcc'=>$statusIPAcc,
@@ -100,6 +112,11 @@ class PingController extends Controller
             'statusSIP'=>$statusSIP,
             'statusRoIP'=>$statusRoIP
         ]);
+
+        sleep(120);
+    }
+
+
 
     }
 }

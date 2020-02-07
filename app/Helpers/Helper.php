@@ -10,7 +10,7 @@ if (!function_exists('PingFunction')) {
      */
     function PingFunction($ip)
     {
-        exec("ping -n 1 -w 1 $ip", $output, $status);
+        exec("ping -n 1 -w 100 $ip", $output, $status);
         return $output;
 
     }

@@ -34,13 +34,13 @@
     $upNode1=" ";
     $downNode1=" ";
     foreach($statusIPAcc as $k=>$s){
-        if($s=="DOWN"){
+        if($s[0]=="DOWN"){
             $downNo1+=1;
-            $downNode1=$d1."<br/>".$k;
+            $downNode1=$d1."<br/>".$s[1];
         }
         else{
             $upNo1+=1;
-            $upNode1=$u1."<br/>".$k;
+            $upNode1=$u1."<br/>".$s[1];
         }
         $d1=$downNode1;
         $u1=$upNode1;
@@ -58,13 +58,13 @@
     $upNode2=" ";
     $downNode2=" ";
     foreach($statusRS232 as $k=>$s){
-        if($s=="DOWN"){
+        if($s[0]=="DOWN"){
             $downNo2+=1;
-            $downNode2=$d2."<br/>".$k;
+            $downNode2=$d2."<br/>".$s[1];
         }
         else{
             $upNo2+=1;
-            $upNode2=$u2."<br/>".$k;
+            $upNode2=$u2."<br/>".$s[1];
         }
         $d2=$downNode2;
         $u2=$upNode2;
@@ -82,13 +82,13 @@
     $upNode3=" ";
     $downNode3=" ";
     foreach($statusVoIP as $k=>$s){
-        if($s=="DOWN"){
+        if($s[0]=="DOWN"){
             $downNo3+=1;
-            $downNode3=$d3."<br/>".$k;
+            $downNode3=$d3."<br/>".$s[1];
         }
         else{
             $upNo3+=1;
-            $upNode3=$u3."<br/>".$k;
+            $upNode3=$u3."<br/>".$s[1];
         }
         $d3=$downNode3;
         $u3=$upNode3;
@@ -106,13 +106,13 @@
     $upNode4=" ";
     $downNode4=" ";
     foreach($statusVGForth as $k=>$s){
-        if($s=="DOWN"){
+        if($s[0]=="DOWN"){
             $downNo4+=1;
-            $downNode4=$d4."<br/>".$k;
+            $downNode4=$d4."<br/>".$s[1];
         }
         else{
             $upNo4+=1;
-            $upNode4=$u4."<br/>".$k;
+            $upNode4=$u4."<br/>".$s[1];
         }
         $d4=$downNode4;
         $u4=$upNode4;
@@ -130,13 +130,13 @@
     $upNode5=" ";
     $downNode5=" ";
     foreach($statusSIP as $k=>$s){
-        if($s=="DOWN"){
+        if($s[0]=="DOWN"){
             $downNo5+=1;
-            $downNode5=$d5."<br/>".$k;
+            $downNode5=$d5."<br/>".$s[1];
         }
         else{
             $upNo5+=1;
-            $upNode5=$u5."<br/>".$k;
+            $upNode5=$u5."<br/>".$s[1];
         }
         $d5=$downNode5;
         $u5=$upNode5;
@@ -154,13 +154,13 @@
     $upNode6=" ";
     $downNode6=" ";
     foreach($statusRoIP as $k=>$s){
-        if($s=="DOWN"){
+        if($s[0]=="DOWN"){
             $downNo6+=1;
-            $downNode6=$d6."<br/>".$k;
+            $downNode6=$d6."<br/>".$s[1];
         }
         else{
             $upNo6+=1;
-            $upNode6=$u6."<br/>".$k;
+            $upNode6=$u6."<br/>".$s[1];
         }
         $d6=$downNode6;
         $u6=$upNode6;
